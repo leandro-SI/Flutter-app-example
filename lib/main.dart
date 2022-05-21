@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(
-      MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Transferências'),
-          ),
-          floatingActionButton: const FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: teste,
-          ),
-          body: const ListaDeTransferencias(),
-        ),
+void main() => runApp(const CesarbankApp());
+
+class CesarbankApp extends StatelessWidget {
+  const CesarbankApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: FormularioDeTransferencia(),
       ),
     );
+  }
+}
+
+class FormularioDeTransferencia extends StatelessWidget {
+  const FormularioDeTransferencia({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Criando Transferência"),
+      ),
+      body: const Text("teste"),
+    );
+  }
+}
 
 void teste() {}
 
@@ -22,17 +36,25 @@ class ListaDeTransferencias extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        Itemtransferencia(Transferencia(150.00, "394-2")),
-        Itemtransferencia(Transferencia(200.00, "394-2"))
-      ],
+    return Scaffold(
+      body: Column(
+        children: const [
+          Itemtransferencia(Transferencia(150.00, "394-2")),
+          Itemtransferencia(Transferencia(200.00, "394-2"))
+        ],
+      ),
+      floatingActionButton: const FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: teste,
+      ),
+      appBar: AppBar(
+        title: const Text('Transferências'),
+      ),
     );
   }
 }
 
 class Itemtransferencia extends StatelessWidget {
-
   final Transferencia _transferencia;
 
   const Itemtransferencia(this._transferencia, {Key? key}) : super(key: key);
@@ -54,5 +76,4 @@ class Transferencia {
   final String conta;
 
   const Transferencia(this.valor, this.conta);
-
 }
